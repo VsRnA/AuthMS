@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+      "lib": ["ES2022"],
+      "target": "ES2022",
+      "moduleResolution": "node",
+      "module": "ESNext",
+      "resolveJsonModule": true,
+      "esModuleInterop": true,
+      "allowSyntheticDefaultImports": true,
+      "skipLibCheck": true,
+      "baseUrl": "./",
+      "paths": {
+        "#common/*": ["./src/common/*"],
+        "#infrastructure/*": ["./src/infrastructure/*"],
+        "#app/*": ["./src/app/*"],
+      },
+    },
+    "exclude": ["node_modules"],
+}
