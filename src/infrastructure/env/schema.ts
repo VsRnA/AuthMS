@@ -7,43 +7,48 @@ export const schema = {
       type: 'number',
       description: 'Порт сервера',
     },
-    MYSQL_USERNAME: {
+    POSTGRES_USER: {
       type: 'string',
       description: 'Имя пользователя mysql',
     },
-    MYSQL_PASSWORD: {
+    POSTGRES_PASSWORD: {
       type: 'string',
       description: 'Пароль для доступа в mysql',
     },
-    MYSQL_DATABASE: {
+    POSTGRES_DB: {
       type: 'string',
       description: 'Название бд mysql сервера',
     },
-    MYSQL_HOST: {
+    POSTGRES_HOST: {
       type: 'string',
       description: 'ip адрес mysql сервера',
     },
-    MYSQL_PORT: {
+    POSTGRES_PORT: {
       type: 'number',
       description: 'Порт mysql сервера',
-    },
-    MYSQL_DIALECT: {
-      type: 'string',
-      description: 'dialect',
     },
     PASSWORD_SALT: {
       type: 'string',
       description: 'Соль пароля',
     },
+    NATS_HOST: {
+      type: 'string',
+      description: 'Nats host',
+    },
+    NATS_PORT: {
+      type: 'number',
+      description: 'Nats port',
+    },
   },
   required: [
     'PORT',
-    'MYSQL_USERNAME',
-    'MYSQL_PASSWORD',
-    'MYSQL_DATABASE',
-    'MYSQL_HOST',
-    'MYSQL_PORT',
-    'MYSQL_DIALECT',
+    'POSTGRES_USER',
+    'POSTGRES_PASSWORD',
+    'POSTGRES_DB',
+    'POSTGRES_HOST',
+    'POSTGRES_PORT',
     'PASSWORD_SALT',
+    'NATS_HOST',
+    'NATS_PORT',
   ],
 } as const satisfies JSONSchema;

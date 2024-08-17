@@ -1,24 +1,21 @@
-import { env } from '#infrastructure/env';
+import { env } from '#infrastructure/env/index';
 import { Sequelize } from 'sequelize';
 
 const sequelize = new Sequelize(
-  env.get('MYSQL_DATABASE'),
-  env.get('MYSQL_USERNAME'),
-  env.get('MYSQL_PASSWORD'),
+  env.get('POSTGRES_DB'),
+  env.get('POSTGRES_USER'),
+  env.get('POSTGRES_PASSWORD'),
   {
-    host: env.get('MYSQL_HOST'),
-    port: env.get('MYSQL_PORT'),
-    dialect: 'mysql',
+    host: env.get('POSTGRES_HOST'),
+    port: env.get('POSTGRES_PORT'),
+    dialect: 'postgres',
     dialectOptions: {
-      charset: 'utf8mb4',
+      collate: 'ru_RU.UTF-8',
+    },
+    define: {
+      charset: 'ru_RU.UTF-8',
     },
     logging: false,
-    pool: {
-      max: 5,
-      min: 0,
-      acquire: 60000,
-      idle: 10000,
-    },
   },
 );
 
