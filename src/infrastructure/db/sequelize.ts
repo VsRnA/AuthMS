@@ -1,3 +1,4 @@
+import { env } from '#infrastructure/env';
 import { Sequelize } from 'sequelize';
 
 const sequelize = new Sequelize(
