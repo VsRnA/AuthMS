@@ -2,3 +2,11 @@
 .env
 package-lock.json
 /src/common/types
+/src/common/errors 
+/src/infrastructure/logger
+/src/infrastructure/transports
+/src/infrastructure/validator
+/src/bootstrap.ts
+Dockerfile
+/docker
+/dist
