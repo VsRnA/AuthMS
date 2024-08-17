@@ -1,3 +1,4 @@
+/* eslint-disable import/no-self-import */
 import esbuild from 'esbuild';
 
 esbuild.build({
