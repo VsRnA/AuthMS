@@ -13,6 +13,7 @@
   "author": "Roman Vasenin",
   "license": "ISC",
   "devDependencies": {
+    "@faker-js/faker": "^8.4.1",
     "@stylistic/eslint-plugin": "^2.3.0",
     "@typescript-eslint/eslint-plugin": "^7.7.1",
     "@typescript-eslint/parser": "^7.7.1",
