@@ -4,7 +4,7 @@ import { createdAt, updatedAt, deletedAt } from '#common/schemas/sequelizeTimest
 export default {
   type: 'object',
   required: [
-    'id',
+    'guid',
     'name',
     'email',
     'imageGuid',
@@ -15,10 +15,10 @@ export default {
     'deletedAt',
   ],
   properties: {
-    id: {
-      type: 'number',
-      description: 'ID публикации',
-      minimum: 1,
+    guid: {
+      type: 'string',
+      description: 'GUID публикации',
+      format: 'uuid',
     },
     name: {
       type: 'string',
@@ -40,6 +40,11 @@ export default {
     role: {
       description: 'Тип',
       enum: ['user', 'admin'],
+    },
+    password: {
+      type: 'string',
+      description: 'Пароль',
+      minLength: 1,
     },
     metadata: {
       type: 'object',

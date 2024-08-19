@@ -9,13 +9,11 @@ export default {
   request: {
     payload: {
       type: 'object',
-      required: ['name', 'email', 'imageGuid', 'role', 'metadata'],
+      required: ['name', 'email', 'password'],
       properties: {
         name: user.properties.name,
         email: user.properties.email,
-        imageGuid: user.properties.imageGuid,
-        role: user.properties.role,
-        metadata: user.properties.metadata,
+        password: user.properties.password,
       },
     },
   },

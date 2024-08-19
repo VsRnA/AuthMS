@@ -3,13 +3,13 @@ import { WhereOptions } from 'sequelize';
 
 type Query = {
     /** Id обновления пользователя */
-    id: UserAttributes['id']
+    guid?: UserAttributes['guid']
 }
 
 type Data = Partial<UserAttributes>;
 
 export async function updateUser(query: Query, userData: Data) {
-  const where: WhereOptions<User> = { id: query.id };
+  const where: WhereOptions<User> = { guid: query.guid };
 
   await User.update(userData, { where });
 }
