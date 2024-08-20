@@ -7,7 +7,7 @@ export type UserCreationAttributes = CreationAttributes<User>;
 
 export default class User extends Model<InferAttributes<User>, InferCreationAttributes<User>> {
   /** ID пользователя */
-  declare id: CreationOptional<number>;
+  declare guid: CreationOptional<string>;
   /** Почта пользователя */
   declare email: string;
   /** Имя пользователя */
@@ -16,6 +16,8 @@ export default class User extends Model<InferAttributes<User>, InferCreationAttr
   declare imageGuid: string | null;
   /** Роль */
   declare role: 'user'| 'admin';
+  /** Пароль */
+  declare password: string;
   /** Данные внешних сервисов */
   declare metadata: Record<string, any>;
   /** Дата создания */
@@ -27,10 +29,10 @@ export default class User extends Model<InferAttributes<User>, InferCreationAttr
 }
 
 User.init({
-  id: {
+  guid: {
     primaryKey: true,
-    type: DataTypes.INTEGER,
-    autoIncrement: true,
+    type: DataTypes.UUID,
+    defaultValue: DataTypes.UUID,
   },
   name: {
     type: DataTypes.STRING,
@@ -43,10 +45,14 @@ User.init({
   },
   imageGuid: {
     type: DataTypes.UUID,
-    allowNull: true,
+    defaultValue: null,
   },
   role: {
     type: DataTypes.ENUM('user', 'admin'),
+    defaultValue: 'user',
+  },
+  password: {
+    type: DataTypes.STRING,
     allowNull: false,
   },
   metadata: {

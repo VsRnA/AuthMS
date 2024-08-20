@@ -11,7 +11,7 @@ export default {
       type: 'object',
       required: ['id'],
       properties: {
-        id: user.properties.id,
+        guid: user.properties.guid,
       },
     },
     payload: {

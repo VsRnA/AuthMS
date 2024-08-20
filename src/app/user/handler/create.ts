@@ -1,16 +1,22 @@
 import nats from '#infrastructure/transports/nats/natsTransport';
-import CreateSchema from '#app/user/schemas/create';
 import { CommonError } from '#common/errors/common';
+import UserRegisterSchema from '#app/user/schemas/register';
 import { findUser } from '../repository/find';
 import { createUser } from '../repository/create';
+import getSaltedPasswordHash from '../services/getSaltedPassordHash';
 
-nats.handler.request('user.user.v1.create', CreateSchema, async ({ payload }) => {
-  const pretendent = await findUser({ email: payload.email });
-  if (pretendent) {
+nats.handler.request('user.user.v1.create', UserRegisterSchema, async ({ payload }) => {
+  if (await findUser({ email: payload.email })) {
     throw new CommonError('User already existed')
-      .code('ERR_USER_ALREADY_EXISTED')
-      .data(pretendent);
+      .code('ERR_USER_ALREADY_EXISTED');
   }
-  const user = await createUser(payload);
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { password, ...user } = await createUser({
+    name: payload.name,
+    email: payload.email,
+    password: await getSaltedPasswordHash(payload.password),
+  });
+
   return { data: user };
 });
