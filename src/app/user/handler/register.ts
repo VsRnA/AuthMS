@@ -5,12 +5,11 @@ import { findUser } from '../repository/find';
 import { createUser } from '../repository/create';
 import getSaltedPasswordHash from '../services/getSaltedPassordHash';
 
-nats.handler.request('user.user.v1.create', UserRegisterSchema, async ({ payload }) => {
+nats.handler.request('user.user.v1.register', UserRegisterSchema, async ({ payload }) => {
   if (await findUser({ email: payload.email })) {
     throw new CommonError('User already existed')
       .code('ERR_USER_ALREADY_EXISTED');
   }
-
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { password, ...user } = await createUser({
     name: payload.name,
