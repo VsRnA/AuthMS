@@ -39,6 +39,10 @@ export const schema = {
       type: 'number',
       description: 'Nats port',
     },
+    JWT_SECRET: {
+      type: 'string',
+      description: 'JWT ключ для токена',
+    },
   },
   required: [
     'PORT',
@@ -50,5 +54,6 @@ export const schema = {
     'PASSWORD_SALT',
     'NATS_HOST',
     'NATS_PORT',
+    'JWT_SECRET',
   ],
 } as const satisfies JSONSchema;
