@@ -1,11 +1,11 @@
-import nats from '#infrastructure/transports/nats/natsTransport';
 import { CommonError } from '#common/errors/common';
 import UserRegisterSchema from '#app/user/schemas/register';
+import httpTransport from '#infrastructure/transports/http';
 import { findUser } from '../repository/find';
 import { createUser } from '../repository/create';
 import getSaltedPasswordHash from '../services/getSaltedPassordHash';
 
-nats.handler.request('user.user.v1.register', UserRegisterSchema, async ({ payload }) => {
+httpTransport.handler.post('user.user.v1.register', UserRegisterSchema, async ({ payload }) => {
   if (await findUser({ email: payload.email })) {
     throw new CommonError('User already existed')
       .code('ERR_USER_ALREADY_EXISTED');

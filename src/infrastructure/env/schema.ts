@@ -43,6 +43,14 @@ export const schema = {
       type: 'string',
       description: 'JWT ключ для токена',
     },
+    HTTP_HOST: {
+      type: 'string',
+      description: 'HTTP host',
+    },
+    HTTP_PORT: {
+      type: 'number',
+      description: 'HTTP port',
+    },
   },
   required: [
     'PORT',
